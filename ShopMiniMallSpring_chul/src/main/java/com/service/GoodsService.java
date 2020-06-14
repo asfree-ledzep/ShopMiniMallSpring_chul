@@ -16,4 +16,9 @@ public class GoodsService {
 	public List<GoodsDTO> goodsList(String gCategory){
 		return dao.goodsList(gCategory);
 	}
+
+	public GoodsDTO goodsRetrieve(String gCode) {
+		// TODO Auto-generated method stub
+		return dao.goodsRetrieve(gCode);
+	}
 }

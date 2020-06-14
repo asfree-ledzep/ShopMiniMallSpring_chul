@@ -18,6 +18,11 @@ public class GoodsDAO {
 		
 		return session.selectList("com.GoodsMapper.goodsList",gCategory);
 	}
+
+	public GoodsDTO goodsRetrieve(String gCode) {
+		// TODO Auto-generated method stub
+		return session.selectOne("com.GoodsMapper.goodsRetrieve", gCode);
+	}
 		
 		
 }
