@@ -1,10 +1,22 @@
 <%@page import="com.dto.GoodsDTO"%>
+<%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+MemberDTO dto= (MemberDTO)session.getAttribute("login");
+if(dto == null){
+%>
+<script type="text/javascript">
+	alert("회원가입이 필요합니다.");
+	location.href="loginUI";
+</script>
+<% 
+} 
+%>
+<%
 	String mesg= (String)session.getAttribute("mesg");
 	if(mesg != null){
-
+	
 %>
 <script type="text/javascript">
 	alert("${mesg}");
@@ -14,14 +26,34 @@
 %>
 <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
-    
-   $("#cart").on("click",function(){
-	   $("form").attr("action","GoodsCartServlet");
+   $(document).ready(function(){
+	   $("#up").on("click", function(){
+		  var sum= parseInt($("#gAmount").val())+1;
+		 console.log("sum", sum);
+		  $("#gAmount").val(sum);
+	   });
 	   
-   });
-   
-    });
+	   $("#down").on("click", function(){
+		   	if(parseInt($("#gAmount").val())!=0){
+			  var sum= parseInt($("#gAmount").val())-1;
+			 console.log("sum", sum);
+			  $("#gAmount").val(sum);
+		   	}
+		   });
+	   
+	   $("#cart").on("click", function(){
+		   if($("#gColor").val()=="색상선택"){
+			  alert("색상을 선택하세요");
+			  return false;
+		   }
+		   if($("#gSize").val()=="사이즈선택"){
+				  alert("사이즈를 선택하세요");
+				  return false;
+			   }
+		   alert("장바구니에 담습니다.");
+		  $("form").attr("action", "goodsCart"); 
+	   });   
+   })
 </script>      
     
 

@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입페이지</title>
+<title>상품정보페이지</title>
 </head>
 <body>
-<h3>회원가입페이지입니다.</h3>
+<h3>상품정보페이지입니다.</h3>
 <jsp:include page='common/top.jsp'></jsp:include><br>
 <jsp:include page='common/menu.jsp'></jsp:include><br>
 <hr>

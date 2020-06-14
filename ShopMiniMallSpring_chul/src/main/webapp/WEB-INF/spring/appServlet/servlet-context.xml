@@ -39,6 +39,7 @@
 			<list>
 				<value>classpath:com/config/GoodsMapper.xml</value>
 				<value>classpath:com/config/MemberMapper.xml</value>
+				<value>classpath:com/config/CartMapper.xml</value>
 			</list>
 		</property>
 		<!--  DTO alias작업 -->
@@ -46,6 +47,7 @@
 			<list>
 				<value>com.dto.GoodsDTO</value>
 				<value>com.dto.MemberDTO</value>
+				<value>com.dto.CartDTO</value>
 			</list>
 		</property>
 	
