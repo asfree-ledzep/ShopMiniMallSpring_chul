@@ -3,13 +3,23 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.CartMapper">
+
+<update id="cartUpdate" parameterType="CartDTO">
+	update cart set gamount= #{gAmount} where num= #{num}
+</update>
+
+<select id="carlist" parameterType="string" resultType="CartDTO">
+	select NUM,  USERID,  GCODE,  GNAME,  GPRICE,  GSIZE, 
+	 GCOLOR,  GAMOUNT,  GIMAGE from cart
+	 where userid= #{userid}
+</select>
+
 <insert id="goodsCart" parameterType="CartDTO">
 insert into cart (NUM,  USERID,  GCODE,  GNAME,  GPRICE,  GSIZE, 
  GCOLOR,  GAMOUNT,  GIMAGE)
 values
 ( Cart_seq.NextVAl, #{userid}, #{gCode}, #{gName}, #{gPrice}, 
 #{gSize}, #{gColor}, #{gAmount}, #{gImage} )
-
 </insert>
 
 </mapper>

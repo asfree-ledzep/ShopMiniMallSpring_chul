@@ -24,8 +24,31 @@ public class GoodsController {
 	GoodsService goodsService;
 	@Autowired
 	CartService cartService;
+	@RequestMapping(value="/cartUpdate", method=RequestMethod.GET)
+	public String cartUpdate(@RequestParam("num") String num, @RequestParam("gAmount") String gAmount) {
+			CartDTO dto= new CartDTO();
+			dto.setNum(Integer.parseInt(num));
+			dto.setgAmount(Integer.parseInt(gAmount));
+			System.out.println("cartUpdate dto===="+ dto);
+			 int result= cartService.cartUpdate(dto);
+		return "";
+	}
+	@RequestMapping("/cartList")
+	public String carlist(HttpSession session, Model m) {
+			MemberDTO memdto= (MemberDTO)session.getAttribute("login");
+			String nextPage="";
+			if(memdto != null) {
+			List<CartDTO> list=cartService.cartlist(memdto.getUserid());
+			session.setAttribute("cartList", list);
+			
+			nextPage="cartList";
+		}else {
+			m.addAttribute("mesg","로그인이 필요합니다.");
+			nextPage="loginForm";			
+		}
+		return nextPage;
+	}
 	
-
 	@RequestMapping("/goodsCart")
 	public String goodsCart(CartDTO cartdto, HttpSession session, Model m) {
 		MemberDTO mdto= (MemberDTO)session.getAttribute("login");

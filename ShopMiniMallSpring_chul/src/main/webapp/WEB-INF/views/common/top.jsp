@@ -11,7 +11,7 @@
 %>
  <%= username %>님 환영합니다. 
 <a href="logout">로그아웃</a>
-<a href="carlist">장바구니</a>
+<a href="cartList">장바구니</a>
 <a href="mypage">마이페이지</a>
 </c:if>
 <c:if test= "${ empty login }">

@@ -35,8 +35,8 @@ public class CartDTO {
 	public int getNum() {
 		return num;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setNum(int num2) {
+		this.num = num2;
 	}
 	public String getUserid() {
 		return userid;
@@ -85,6 +85,13 @@ public class CartDTO {
 	}
 	public void setgImage(String gImage) {
 		this.gImage = gImage;
+	}
+	
+	@Override
+	public String toString() {
+		return "CartDTO [num=" + num + ", userid=" + userid + ", gCode=" + gCode + ", gName=" + gName + ", gPrice="
+				+ gPrice + ", gSize=" + gSize + ", gColor=" + gColor + ", gAmount=" + gAmount + ", gImage=" + gImage
+				+ "]";
 	}
 	
 		
