@@ -27,4 +27,9 @@ public class CartService {
 			// TODO Auto-generated method stub
 			return dao.cartUpdate(dto);
 		}
+
+		public int cartDelte(int num) {
+			// TODO Auto-generated method stub
+			return dao.cartDelte(num);
+		}
 }

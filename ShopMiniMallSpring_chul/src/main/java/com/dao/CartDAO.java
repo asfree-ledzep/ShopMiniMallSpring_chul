@@ -29,5 +29,10 @@ public class CartDAO {
 		// TODO Auto-generated method stub
 		return session.update("com.CartMapper.cartUpdate", dto);
 	}
+
+	public int cartDelte(int num) {
+		// TODO Auto-generated method stub
+		return session.delete("com.CartMapper.cartDelte", num);
+	}
 	
 }

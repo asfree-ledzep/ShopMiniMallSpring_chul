@@ -4,6 +4,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.CartMapper">
 
+<delete id="cartDelte" parameterType="int">
+	delete from cart where num= #{num}
+</delete>
+
 <update id="cartUpdate" parameterType="CartDTO">
 	update cart set gamount= #{gAmount} where num= #{num}
 </update>

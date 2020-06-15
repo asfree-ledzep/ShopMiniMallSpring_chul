@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dto.CartDTO;
 import com.dto.GoodsDTO;
@@ -24,14 +25,24 @@ public class GoodsController {
 	GoodsService goodsService;
 	@Autowired
 	CartService cartService;
+	@RequestMapping("/cartDelte")
+	@ResponseBody
+	public void cartDelte(@RequestParam("num") String num) {
+		System.out.println("cartDelte request num= "+ num);
+		int delnum= Integer.parseInt(num);
+		int result= cartService.cartDelte(delnum);
+		System.out.println("cartDelte result= "+ result);
+	}
+	
 	@RequestMapping(value="/cartUpdate", method=RequestMethod.GET)
-	public String cartUpdate(@RequestParam("num") String num, @RequestParam("gAmount") String gAmount) {
+	@ResponseBody
+	public void cartUpdate(@RequestParam("num") String num, @RequestParam("gAmount") String gAmount) {
 			CartDTO dto= new CartDTO();
 			dto.setNum(Integer.parseInt(num));
 			dto.setgAmount(Integer.parseInt(gAmount));
 			System.out.println("cartUpdate dto===="+ dto);
 			 int result= cartService.cartUpdate(dto);
-		return "";
+		
 	}
 	@RequestMapping("/cartList")
 	public String carlist(HttpSession session, Model m) {

@@ -32,6 +32,28 @@
     				
     			}   			
     		}); //end ajax
+    	});// end update
+    	
+    	$(".delBtn").on("click", function(){
+    		var num= $(this).attr("data-xxx");
+    		var xxx= $(this)
+    		console.log("this======"+$(this));
+    		$.ajax({
+    			url: "cartDelte",
+    			type: "get",
+    			dataType:"text",
+    			data:{
+    				num: num    				
+    			},
+    			success: function(data, status, xhr){
+    				//xxx의 부모 중 "tr" 태그 찾기 후 삭제 
+    				
+    				xxx.parents().filter("tr").remove();
+    			},
+    			error: function(xhr, status, error){
+    				
+    			}   			
+    		}); //end ajax
     	});
     	
     	
