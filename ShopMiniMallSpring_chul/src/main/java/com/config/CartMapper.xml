@@ -3,6 +3,17 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.CartMapper">
+<delete id="cartDeleteAll" parameterType="list">
+	delete from cart
+	where num
+	IN
+	<foreach collection="list" item="item" open="(" separator="," close=")">
+		#{item}
+	</foreach>
+
+
+</delete>
+
 
 <delete id="cartDelte" parameterType="int">
 	delete from cart where num= #{num}

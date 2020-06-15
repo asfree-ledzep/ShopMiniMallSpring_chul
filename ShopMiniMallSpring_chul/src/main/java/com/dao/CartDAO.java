@@ -34,5 +34,10 @@ public class CartDAO {
 		// TODO Auto-generated method stub
 		return session.delete("com.CartMapper.cartDelte", num);
 	}
+
+	public int cartDeleteAll(List<String> list) {
+		// TODO Auto-generated method stub
+		return session.delete("com.CartMapper.cartDeleteAll", list);
+	}
 	
 }

@@ -18,10 +18,10 @@ if(dto == null){
 	if(mesg != null){
 	
 %>
-<script type="text/javascript">
+<!--  <script type="text/javascript">
 	alert("${mesg}");
-</script>
-<% } 
+</script>-->
+<% }
 	session.removeAttribute("mesg");
 %>
 <script type="text/javascript" src="js/jquery-3.3.1.js"></script>

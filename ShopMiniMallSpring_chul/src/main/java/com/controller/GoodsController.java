@@ -1,7 +1,9 @@
 package com.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,21 @@ public class GoodsController {
 	GoodsService goodsService;
 	@Autowired
 	CartService cartService;
+	
+	@RequestMapping("/cartDeleteAll")
+	//public String cartDeleteAll(@RequestParam("check") String[] check) {
+	public String cartDeleteAll(HttpServletRequest request) {
+		//String checks[]= check;
+		String checks[] = request.getParameterValues("check");
+		System.out.println("checks[]"+ Arrays.toString(checks));
+		List<String> list= Arrays.asList(checks);
+		System.out.println("checks[]"+ list);
+		int result= cartService.cartDeleteAll(list);
+		System.out.println("delAll result= "+ result);
+		return "redirect:cartList";
+	}
+	
+	
 	@RequestMapping("/cartDelte")
 	@ResponseBody
 	public void cartDelte(@RequestParam("num") String num) {
@@ -63,7 +80,7 @@ public class GoodsController {
 	@RequestMapping("/goodsCart")
 	public String goodsCart(CartDTO cartdto, HttpSession session, Model m) {
 		MemberDTO mdto= (MemberDTO)session.getAttribute("login");
-		System.out.println("goodsCart 파싱 cartdto========="+ cartdto);
+		
 		String nextPage="";
 		if(mdto !=null ) {
 			String userid= mdto.getUserid();
@@ -71,11 +88,11 @@ public class GoodsController {
 			int result= cartService.goodsCart(cartdto);
 			System.out.println("result===== " + result);
 			session.setAttribute("mesg", "주문이 완료되었습니다.");
-			nextPage="redircet:/goodsRetrieve?gCode="+ cartdto.getgCode();
+			nextPage="redirect:/cartList";
+			//nextPage="redircet:/goodsRetrieve?gCode="+ cartdto.getgCode();//이부분에서 404에러가 남. 
 		}else {
 			m.addAttribute("mesg","로그인이 필요합니다.");
-			nextPage="loginForm";
-			
+			nextPage="loginForm";			
 		}
 		
 		return nextPage;
@@ -84,10 +101,11 @@ public class GoodsController {
 	
 	
 	@RequestMapping(value="/goodsRetrieve", method= RequestMethod.GET) //goodsRetrive.jsp 
-	@ModelAttribute("goodsRetrieve") //model 객체에 gooodsRetrive 로 dto객체를 담음
-	public GoodsDTO goodsRetrive(@RequestParam("gCode") String gCode) {//return type 주의
-		GoodsDTO dto = goodsService.goodsRetrieve(gCode);		
-		return dto; //Model객체에 dto를 삽입 
+	public String goodsRetrieve(@RequestParam("gCode") String gCode, Model m) {//return type 주의
+		GoodsDTO dto = goodsService.goodsRetrieve(gCode);	
+		m.addAttribute("goodsRetrieve", dto);
+		System.out.println("goodsRetrive===="+ dto);
+		return "goodsRetrieve"; 
 	}
 	
 	

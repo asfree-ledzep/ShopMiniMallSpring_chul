@@ -37,7 +37,7 @@
     	$(".delBtn").on("click", function(){
     		var num= $(this).attr("data-xxx");
     		var xxx= $(this)
-    		console.log("this======"+$(this));
+    		
     		$.ajax({
     			url: "cartDelte",
     			type: "get",
@@ -54,16 +54,36 @@
     				
     			}   			
     		}); //end ajax
+    	});//end function
+    	
+    	$("#allCheck").on("click", function(){
+    		var result= this.checked;
+    		console.log("allcheck checked=="+ result);
+    		$(".check").each(function(idx, data){
+    			this.checked= result;    			
+    		});//each end    		
+    	});// allCheck end    
+    	//전체삭제1
+    	$("#delAllCart").on("click", function(){
+    		var num=[];
+    		$("input:checkbox[name='check']:checked").each(function(idx, data){
+    				num[idx]=$(this).val();
+    		});
+    		location.href="cartDeleteAll?num="+ num;   
+    		//$("form").attr("action", "cartDeleteAll");
+    		//$("form").submit();
+    	});
+    	
+    	//전체삭제2
+    	$("#delAllCart2").on("click", function(){
+    		$("form").attr("action", "cartDeleteAll");
+    		$("form").submit();
+    		
     	});
     	
     	
-    	
-    	
-    	
-    	
-    	
-    	
-    });
+   });//all end
+   
 </script>    
 <table width="90%" cellspacing="0" cellpadding="0" border="0">
 
@@ -182,7 +202,7 @@
 		<td align="center" colspan="5"><a class="a_black" id="orderAllConfirm"> 전체 주문하기 </a>&nbsp;&nbsp;&nbsp;&nbsp; 
 			<a class="a_black" href="#" id="delAllCart"> 전체 삭제하기 </a>&nbsp;&nbsp;&nbsp;&nbsp;
 			<a class="a_black" href="#" id="delAllCart2"> 전체 삭제하기2 </a>&nbsp;&nbsp;&nbsp;&nbsp;
-			<a class="a_black" href="index.jsp"> 계속 쇼핑하기 </a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a class="a_black" href="main"> 계속 쇼핑하기 </a>&nbsp;&nbsp;&nbsp;&nbsp;
 		</td>
 	</tr>
 	<tr>

@@ -32,4 +32,9 @@ public class CartService {
 			// TODO Auto-generated method stub
 			return dao.cartDelte(num);
 		}
+
+		public int cartDeleteAll(List<String> list) {
+			// TODO Auto-generated method stub
+			return dao.cartDeleteAll(list);
+		}
 }
